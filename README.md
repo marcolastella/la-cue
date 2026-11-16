@@ -16,6 +16,7 @@ assets/
   main.js       scroll scenes and parallax
   fonts/        the typefaces shipped with the app (OFL)
   icon-512.png  official app icon
+  shots/        real screenshots of the app
 ```
 
 ---

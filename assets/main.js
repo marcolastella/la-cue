@@ -404,6 +404,29 @@
     demoT = t; press(keys[demoI++ % keys.length]);
   }
 
+  /* ═════════ SCENA · LO SCREENSHOT VERO ═════════ */
+  const realStage = $("#realStage"), callouts = $$(".callout", realStage);
+  function updReal(p) {
+    const e = easeOut(map(p, 0, .36));
+    realStage.style.transform = `translate3d(0,${(1 - e) * 80}px,0) rotateX(${(1 - e) * 32}deg) scale(${.72 + .28 * e})`;
+    realStage.style.opacity = .2 + .8 * map(p, 0, .15);
+    callouts.forEach(c => c.classList.toggle("on", p >= +c.dataset.at && p < .97));
+  }
+
+  /* ═════════ GALLERIA: inclinazione e parallasse ═════════ */
+  const tilts = $$("[data-tilt] img");
+  function updGallery() {
+    tilts.forEach((img, i) => {
+      const r = img.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > innerHeight + 100) return;
+      const d = clamp((r.top + r.height / 2 - innerHeight / 2) / innerHeight, -1, 1);
+      const side = img.closest(".g-row").classList.contains("flip") ? -1 : 1;
+      img.style.transform = `translate3d(0,${d * 60}px,0) rotateY(${d * 14 * side}deg) rotateX(${d * -6}deg) scale(${1 - Math.abs(d) * .06})`;
+    });
+  }
+  const pads = $(".g-pads", track);
+  if (pads) for (let r = 0; r < 2; r++) for (let c = 0; c < 4; c++) { const e = document.createElementNS(NS, "rect"); Object.entries({ x: 32 + c * 22, y: 34 + r * 28, width: 16, height: 22, rx: 4 }).forEach(([k, v]) => e.setAttribute(k, v)); if (r === 0 && c === 1) e.setAttribute("style", "fill:#5FE7FF;stroke:#5FE7FF"); pads.appendChild(e); }
+
   /* ═════════ SCENA · GO ═════════ */
   const goKey = $(".go-key"), goPre = $(".go-pre"), goReady = $(".go-ready"), flash = $(".go-flash"), rings = $$(".ring");
   function updGo(p) {
@@ -466,7 +489,7 @@
   }
 
   /* ═════════ loop ═════════ */
-  const scenes = { intro: updIntro, show: updShow, wave: updWave, mixer: updMixer, reel: updReel, go: updGo };
+  const scenes = { intro: updIntro, real: updReal, show: updShow, wave: updWave, mixer: updMixer, reel: updReel, go: updGo };
   const sceneEls = $$("[data-scene]");
   const nav = $(".nav"), sbFill = $(".scrollbar-fill"), sbHead = $(".scrollbar-head"), intro = $(".intro");
   function sceneP(s) {
@@ -483,7 +506,7 @@
     const mr = $(".mixer").getBoundingClientRect();
     mixVisible = mr.bottom > 0 && mr.top < innerHeight;
     meterTick(t); keysDemo(t);
-    updSpeeds(); updDl(); drawSine(t); drawDust(t);
+    updSpeeds(); updDl(); updGallery(); drawSine(t); drawDust(t);
     const docP = clamp(scrollY / (document.documentElement.scrollHeight - innerHeight));
     sbFill.style.width = docP * 100 + "%";
     sbHead.style.left = docP * 100 + "%";

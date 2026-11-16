@@ -81,6 +81,25 @@
   </div>
 </section>
 
+<!-- ═════════ THE REAL THING ═════════ -->
+<section class="scene real" data-scene="real" id="app">
+  <div class="sticky">
+    <div class="real-head">
+      <p class="eyebrow">The real thing</p>
+      <h2 class="bodoni big">This is <span class="w-la">La</span> <span class="w-cue">Cue</span>.</h2>
+    </div>
+    <div class="real-stage" id="realStage">
+      <img src="assets/shots/01-cuelist.webp" alt="La Cue main window: cue list, standby, waveform and the GO button" class="real-img" width="1372" height="883">
+      <div class="callout c1" style="--x:28%;--y:7.5%" data-at=".40"><i></i><span>Standby: always shows what’s next</span></div>
+      <div class="callout c2 right" style="--x:93%;--y:7.5%" data-at=".48"><i></i><span>Time of day, for the stage manager</span></div>
+      <div class="callout c3" style="--x:50%;--y:22.5%" data-at=".56"><i></i><span>Crossfade between cues, with its curve</span></div>
+      <div class="callout c4 right" style="--x:66%;--y:44.5%" data-at=".64"><i></i><span><em class="new">New</em> Control cues: fade any cue, by target and time</span></div>
+      <div class="callout c5" style="--x:52%;--y:80%" data-at=".72"><i></i><span>The waveform of the selected cue</span></div>
+      <div class="callout c6" style="--x:28%;--y:94%" data-at=".80"><i></i><span>One big GO</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- ═════════ ACT I · THE SHOW ═════════ -->
 <section class="scene show" data-scene="show" id="show">
   <div class="sticky">
@@ -168,13 +187,67 @@
   </div>
 </section>
 
-<!-- ═════════ ACT IV · THE BOOTH (horizontal) ═════════ -->
+<!-- ═════════ ACT IV · UP CLOSE ═════════ -->
+<section class="gallery" id="closeup">
+  <div class="wrap">
+    <p class="eyebrow reveal">Act IV · Up close</p>
+    <h2 class="bodoni big split">Straight from the booth.</h2>
+    <p class="lead reveal">Real screenshots from a real show. No mockups.</p>
+  </div>
+
+  <div class="g-row">
+    <div class="g-shot" data-tilt><img src="assets/shots/03-edit-bpm.webp" alt="Edit mode with trim handles, beat grid and Snap to BPM" loading="lazy" width="1372" height="883"></div>
+    <div class="g-text reveal">
+      <span class="g-num mono">01</span>
+      <h3>Trim on the beat. <em class="new">New</em></h3>
+      <p>Tempo detected on import. Pick the grid from 1/1 to 1/64, turn on <b>Snap to BPM</b>, and trims lock to the beat. Auto-Trim Silence, loops and markers are one click away.</p>
+    </div>
+  </div>
+
+  <div class="g-row flip">
+    <div class="g-shot" data-tilt><img src="assets/shots/04-edit-fade.webp" alt="Fade mode with fade-in and fade-out handles and a Fade to next one marker" loading="lazy" width="1372" height="883"></div>
+    <div class="g-text reveal">
+      <span class="g-num mono">02</span>
+      <h3>Fades you can see.</h3>
+      <p>Drag the blue handles, choose the curve for the way in and the way out. Drop a <b>Fade to next one</b> marker and the countdown tells you exactly when it’s coming.</p>
+    </div>
+  </div>
+
+  <div class="g-row">
+    <div class="g-shot" data-tilt><img src="assets/shots/02-mixer.webp" alt="Mixer open: a fader next to every cue and the master meter at the bottom" loading="lazy" width="1372" height="883"></div>
+    <div class="g-text reveal">
+      <span class="g-num mono">03</span>
+      <h3>The mixer lives in the list. <em class="new">New</em></h3>
+      <p>Press Mixer and every cue gets its fader, right where the cue is. The master and its stereo meter sit at the bottom of the window.</p>
+    </div>
+  </div>
+
+  <div class="g-row flip">
+    <div class="g-shot" data-tilt><img src="assets/shots/05-midi.webp" alt="MIDI Control panel with Learn and mappable functions" loading="lazy" width="1372" height="883"></div>
+    <div class="g-text reveal">
+      <span class="g-num mono">04</span>
+      <h3>MIDI Learn. <em class="new">New</em></h3>
+      <p>Turn on Learn, click a control, press a key, pad or fader. GO, Pause, Fade all, Stop, Stop All, standby next and previous, mixer on/off — even a single cue or its fader.</p>
+    </div>
+  </div>
+
+  <div class="g-row">
+    <div class="g-shot" data-tilt><img src="assets/shots/06-shows.webp" alt="Shows library with recent shows" loading="lazy" width="1372" height="883"></div>
+    <div class="g-text reveal">
+      <span class="g-num mono">05</span>
+      <h3>Every show is a folder.</h3>
+      <p>Project file plus Media folder — move it anywhere, open it anywhere. Your recent shows are always one click away.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ ACT V · THE BOOTH (horizontal) ═════════ -->
 <section class="scene reel" data-scene="reel" id="features">
   <div class="sticky">
     <div class="reel-ghost bodoni" aria-hidden="true">Ready to Cue · Ready to Cue · Ready to Cue</div>
     <div class="reel-track" id="reelTrack">
       <div class="reel-intro">
-        <p class="eyebrow">Act IV · The booth</p>
+        <p class="eyebrow">Act V · The booth</p>
         <h2 class="bodoni big">Everything<br>you need.</h2>
         <p class="lead">Nothing you don’t. Every control is where you expect it — in the dark, on opening night.</p>
         <span class="reel-arrow mono">keep scrolling →</span>
@@ -201,50 +274,64 @@
         <p>Each cue decides what to do with the ones above it when it fires: stop, stop all, fade or fade all — with its own fade time.</p>
       </article>
 
+      <article class="card new-card">
+        <span class="num mono">04</span><em class="new">New</em>
+        <svg class="glyph" viewBox="0 0 200 120"><rect x="10" y="40" width="56" height="40" rx="10" class="g-lime"/><text x="38" y="65" text-anchor="middle" class="g-limetxt">FADE</text><rect x="72" y="40" width="56" height="40" rx="10" class="g-lime"/><text x="100" y="65" text-anchor="middle" class="g-limetxt">TARGET 3</text><rect x="134" y="40" width="56" height="40" rx="10" class="g-lime"/><text x="162" y="65" text-anchor="middle" class="g-limetxt">7.4 s</text></svg>
+        <h3>Control cues.</h3>
+        <p>A cue that controls another: fade cue 3 to silence over 7.4 seconds, stop it, pause it. Fire it with GO like any other.</p>
+      </article>
+
       <article class="card">
-        <span class="num mono">04</span>
+        <span class="num mono">05</span>
         <svg class="glyph" viewBox="0 0 200 120"><path d="M20 60 C 70 60, 80 20, 100 20 S 130 60, 180 60" class="g-cyan"/><path d="M20 100 L180 20" class="g-line"/><path d="M20 100 C 60 100, 140 20, 180 20" class="g-dim"/></svg>
         <h3>Crossfades with curves.</h3>
         <p>Linear, S-curve, fast or slow start. Constant power is the default: same perceived loudness all the way through.</p>
       </article>
 
       <article class="card">
-        <span class="num mono">05</span>
+        <span class="num mono">06</span>
         <svg class="glyph" viewBox="0 0 200 120"><rect x="14" y="44" width="54" height="32" rx="8" class="g-cyan"/><path d="M72 60h20" class="g-line"/><rect x="96" y="44" width="40" height="32" rx="8" class="g-line"/><path d="M140 60h14" class="g-line"/><rect x="158" y="44" width="30" height="32" rx="8" class="g-line"/><text x="82" y="38" class="g-txt">pre</text><text x="140" y="38" class="g-txt">auto</text></svg>
         <h3>Pre-wait, auto-continue, auto-follow.</h3>
         <p>Chain cues with waits and automatic starts. Auto-follow crossfades into the next one. Complex sequences, one GO.</p>
       </article>
 
       <article class="card new-card">
-        <span class="num mono">06</span><em class="new">New</em>
+        <span class="num mono">07</span><em class="new">New</em>
         <svg class="glyph" viewBox="0 0 200 120"><g class="g-film"></g><path d="M14 98 Q 30 80 46 98 T 78 98 T 110 98 T 142 98 T 186 98" class="g-cyan"/></svg>
         <h3>Video, frame by frame.</h3>
         <p>Video cues show a filmstrip above the audio waveform. Fades work on picture and sound; audio is normalized too.</p>
       </article>
 
       <article class="card">
-        <span class="num mono">07</span>
+        <span class="num mono">08</span>
         <svg class="glyph" viewBox="0 0 200 120"><rect x="22" y="22" width="72" height="76" rx="16" class="g-amber"/><text x="58" y="70" text-anchor="middle" class="g-key amber">F</text><rect x="106" y="22" width="72" height="76" rx="16" class="g-red"/><text x="142" y="68" text-anchor="middle" class="g-key small">ESC</text></svg>
         <h3>Fade, and Stop All.</h3>
         <p>F fades everything with your global fade time. Stop All can fade too — press it twice and everything stops. Instantly.</p>
       </article>
 
       <article class="card new-card">
-        <span class="num mono">08</span><em class="new">New</em>
+        <span class="num mono">09</span><em class="new">New</em>
         <svg class="glyph" viewBox="0 0 200 120"><circle cx="40" cy="60" r="16" class="g-cyan"/><path d="M56 60h28" class="g-line"/><rect x="88" y="20" width="96" height="22" rx="6" class="g-line"/><rect x="88" y="49" width="96" height="22" rx="6" class="g-hlbox"/><rect x="88" y="78" width="96" height="22" rx="6" class="g-line"/><text x="96" y="35" class="g-opt">System Default</text><text x="96" y="64" class="g-opt on">Dante Virtual…</text><text x="96" y="93" class="g-opt">USB Interface</text></svg>
-        <h3>Any output.</h3>
-        <p>Pick the audio device in Settings — Dante Virtual Soundcard, your interface, or simply follow the Mac.</p>
+        <h3>Audio routing.</h3>
+        <p>Add outputs, set each one stereo or mono, test and mute them. Send every cue where it belongs — Dante Virtual Soundcard included.</p>
+      </article>
+
+      <article class="card new-card">
+        <span class="num mono">10</span><em class="new">New</em>
+        <svg class="glyph" viewBox="0 0 200 120"><rect x="20" y="20" width="160" height="80" rx="12" class="g-line"/><g class="g-pads"></g><rect x="128" y="34" width="10" height="52" rx="5" class="g-line"/><rect x="124" y="54" width="18" height="10" rx="3" class="g-fillc"/><rect x="152" y="34" width="10" height="52" rx="5" class="g-line"/><rect x="148" y="44" width="18" height="10" rx="3" class="g-fillc"/></svg>
+        <h3>MIDI Learn.</h3>
+        <p>Click a control, press a key, pad or fader on your controller. Done — GO, Fade, Stop All and the faders are now under your fingers.</p>
       </article>
 
       <article class="card">
-        <span class="num mono">09</span>
+        <span class="num mono">11</span>
         <svg class="glyph" viewBox="0 0 200 120"><text x="100" y="78" text-anchor="middle" class="g-bignum">12A</text></svg>
         <h3>Numbers, your way.</h3>
         <p>Automatic numbering, or type your own: 12, 12A, 12B. The way your stage manager calls them.</p>
       </article>
 
       <article class="card">
-        <span class="num mono">10</span>
+        <span class="num mono">12</span>
         <svg class="glyph" viewBox="0 0 200 120"><path d="M30 34h44l10 12h86v54H30z" class="g-line"/><text x="100" y="84" text-anchor="middle" class="g-file">.lacue</text></svg>
         <h3>One show, one folder.</h3>
         <p>The <span class="mono">.lacue</span> file and its Media folder travel together, with relative paths. Auto-saved. Double-click and you’re on.</p>
@@ -256,7 +343,7 @@
 <!-- ═════════ ACT V · KEYBOARD ═════════ -->
 <section class="keys-section" id="keys">
   <div class="wrap center">
-    <p class="eyebrow reveal">Act V · Eyes on stage</p>
+    <p class="eyebrow reveal">Act VI · Eyes on stage</p>
     <h2 class="bodoni big split">Run it without looking.</h2>
     <p class="lead reveal" style="margin:0 auto">Every action is one key away. Try them — press them now.</p>
     <div class="keyboard reveal d2" id="keyboard">
