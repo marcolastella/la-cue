@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Cue — Ready to Cue</title>
+<meta name="description" content="La Cue is the cue player for whoever is on the button. Drag in your files, shape them on the waveform, press GO. For theatre, events and schools, on Mac.">
+<meta name="theme-color" content="#08090B">
+<meta property="og:title" content="La Cue — Ready to Cue">
+<meta property="og:description" content="Diamo il LA. The cue player for whoever is on the button, on Mac.">
+<meta property="og:image" content="assets/icon-512.png">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<canvas id="dust" aria-hidden="true"></canvas>
+<div class="scrollbar" aria-hidden="true"><div class="scrollbar-fill"></div><div class="scrollbar-head"></div></div>
+
+<nav class="nav">
+  <a href="#top" class="wordmark small"><span class="w-la">La</span><span class="w-cue">Cue</span></a>
+  <div class="nav-links">
+    <a href="#show">The show</a>
+    <a href="#waveform">Waveform</a>
+    <a href="#mixer">Mixer</a>
+    <a href="#features">Features</a>
+    <a href="#download" class="nav-cta">Download</a>
+  </div>
+</nav>
+
+<main id="top">
+
+<!-- ═════════ OPENING ═════════ -->
+<section class="scene intro" data-scene="intro">
+  <div class="sticky">
+    <div class="intro-floor" aria-hidden="true"></div>
+    <div class="intro-ghost" aria-hidden="true">LA</div>
+    <div class="intro-logo">
+      <svg class="emblem" viewBox="150 230 724 580" role="img" aria-label="La Cue">
+        <defs>
+          <linearGradient id="cyanV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9FAFF"/><stop offset="1" stop-color="#3EE6FF"/></linearGradient>
+          <linearGradient id="cyanH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3EE6FF" stop-opacity=".6"/><stop offset="1" stop-color="#5FE7FF"/></linearGradient>
+          <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="soft" x="-20%" y="-30%" width="140%" height="160%"><feGaussianBlur stdDeviation="9" result="b"/><feComponentTransfer in="b" result="b2"><feFuncA type="linear" slope=".6"/></feComponentTransfer><feMerge><feMergeNode in="b2"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <text class="e-la" x="519.9" y="464.9" text-anchor="middle">La</text>
+        <rect class="e-track" x="196" y="527.6" width="632" height="10" rx="5"/>
+        <rect class="e-tick t1" x="661" y="520.6" width="6" height="24" rx="3"/>
+        <rect class="e-tick t2" x="739" y="520.6" width="6" height="24" rx="3"/>
+        <rect class="e-tick t3" x="809" y="520.6" width="6" height="24" rx="3"/>
+        <rect class="e-fill" x="196" y="527.6" width="364" height="10" rx="5" fill="url(#cyanH)"/>
+        <g class="e-head"><circle cx="560" cy="532.6" r="19" fill="#5FE7FF" filter="url(#glow)"/><circle cx="560" cy="532.6" r="7" fill="#fff"/></g>
+        <text class="e-cue" x="504.4" y="760.8" text-anchor="middle" fill="url(#cyanV)" filter="url(#soft)">cue</text>
+      </svg>
+      <p class="intro-tag">Ready to Cue</p>
+    </div>
+    <p class="intro-dim">House lights down.</p>
+    <div class="scroll-hint" aria-hidden="true"><span>scroll</span><i></i></div>
+  </div>
+</section>
+
+<!-- ═════════ PROLOGUE ═════════ -->
+<section class="la-section" id="la">
+  <div class="la-ghost" data-speed="-0.35" aria-hidden="true">LA</div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Prologue</p>
+    <h2 class="bodoni huge split">Diamo il LA.</h2>
+    <p class="translation reveal">Italian for <em>“let’s give the A”</em> — the note that starts everything.</p>
+    <div class="tuning reveal" aria-hidden="true">
+      <svg viewBox="0 0 1200 160" preserveAspectRatio="none"><path id="sine" d=""/></svg>
+      <span class="mono hz">A4 · 440 Hz</span>
+    </div>
+    <div class="la-cols">
+      <p class="lead reveal">In an orchestra the A comes first. Everyone tunes to it, then the show can begin. In the booth it’s the same: someone has to give the cue.</p>
+      <p class="lead reveal d2"><strong><span class="w-la">La</span> <span class="w-cue">Cue</span></strong> is the cue player for whoever is on the button. Drag in your files, shape them on the waveform, press <span class="kbd">GO</span>. It takes care of the rest.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ ACT I · THE SHOW ═════════ -->
+<section class="scene show" data-scene="show" id="show">
+  <div class="sticky">
+    <div class="house" aria-hidden="true"></div>
+    <div class="show-head">
+      <p class="eyebrow">Act I · Opening night</p>
+      <h2 class="bodoni caption" id="showCaption">House lights down.</h2>
+      <p class="show-sub" id="showSub">The audience settles. Cue 1 is on standby.</p>
+    </div>
+    <div class="appwin">
+      <div class="aw-bar">
+        <span class="lights"><i></i><i></i><i></i></span>
+        <img src="assets/favicon.png" alt="" class="aw-icon">
+        <span class="wordmark tiny"><span class="w-la">La</span><span class="w-cue">Cue</span></span>
+        <span class="aw-title">Dress rehearsal · 4 cues</span>
+      </div>
+      <div class="aw-rows" id="rows"></div>
+      <div class="aw-foot">
+        <button class="go-btn" id="goBtn" tabindex="-1">GO</button>
+        <button class="ghost-btn" tabindex="-1">Pause</button>
+        <button class="stop-btn" tabindex="-1">Stop All</button>
+        <span class="next mono">Next: <b id="nextCue">1 · Overture</b></span>
+        <span class="mini-vu" aria-hidden="true"><i id="mvL"></i><i id="mvR"></i></span>
+      </div>
+    </div>
+    <div class="timeline" aria-hidden="true">
+      <div class="tl-track" id="tlTrack"></div>
+      <div class="tl-head"><span class="mono" id="tlTime">00:00:00</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ ACT II · THE WAVEFORM ═════════ -->
+<section class="scene wave" data-scene="wave" id="waveform">
+  <div class="sticky">
+    <div class="wave-grid">
+      <div class="wave-copy">
+        <p class="eyebrow">Act II · The sound</p>
+        <h2 class="bodoni big">Everything happens<br>on the waveform.</h2>
+        <ol class="steps" id="waveSteps">
+          <li><b>Drop it in.</b><span>Audio, video, images. The file is copied into the show’s Media folder.</span></li>
+          <li><b>Normalized to −0.1 dBFS.</b><span>Every file starts at the same peak level. Your originals are never touched.</span></li>
+          <li><b>Silence, trimmed.</b><span>La Cue finds where the sound really starts and ends. Trims are non-destructive.</span></li>
+          <li><b>Fades you can see.</b><span>Drag the handles, pick the curve. Edit-mode preview sounds exactly like the show.</span></li>
+          <li><b>Beat grid &amp; Snap to BPM. <em class="new">New</em></b><span>Tempo is detected on import. Grid from 1/1 to 1/64 — trims, fades and named markers lock to the beat.</span></li>
+          <li><b>Seamless loops. <em class="new">New</em></b><span>∞ or ×N, gapless, with a micro-crossfade at the seam. Fade-out waits for the last pass.</span></li>
+        </ol>
+      </div>
+      <div class="wave-stage">
+        <div class="wave-meta mono"><span id="waveName">Overture.wav</span><span id="waveRead">—</span></div>
+        <svg id="waveSvg" viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div class="wave-time mono"><span id="waveClock">00:00.00</span><span id="waveBpm"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ ACT III · THE MIX ═════════ -->
+<section class="scene mixer" data-scene="mixer" id="mixer">
+  <div class="sticky">
+    <div class="mix-grid">
+      <div class="mix-copy">
+        <p class="eyebrow">Act III · The mix <em class="new">New</em></p>
+        <h2 class="bodoni big">Every cue has<br>its own fader.</h2>
+        <ul class="bullets">
+          <li class="reveal">Open the mixer and each fader sits <b>right next to its cue</b> — you always know what you’re touching.</li>
+          <li class="reveal d2">Mixer-style taper: more precision around 0 dB. <b>Double-click</b> snaps back to zero. Levels change live, mid-cue.</li>
+          <li class="reveal d3">The <b>master</b> lives at the bottom, with a professional stereo meter, peak hold and a clip light.</li>
+        </ul>
+      </div>
+      <div class="mixwin">
+        <div class="mx-rows" id="mxRows"></div>
+        <div class="mx-master">
+          <div class="mx-label"><span class="grot">MASTER</span><span class="mono" id="mxMasterDb">0.0 dB</span></div>
+          <div class="fader" id="mxMasterFader"><div class="f-scale"></div><div class="f-zero"></div><div class="f-fill"></div><div class="f-thumb"></div></div>
+          <div class="vu">
+            <div class="vu-lane"><span class="vu-ch mono">L</span><div class="vu-bar"><div class="vu-peak" id="vuPL"></div><div class="vu-fill" id="vuL"></div><div class="vu-hold" id="vuHL"></div></div><span class="vu-db mono" id="vuDL">-∞</span></div>
+            <div class="vu-lane"><span class="vu-ch mono">R</span><div class="vu-bar"><div class="vu-peak" id="vuPR"></div><div class="vu-fill" id="vuR"></div><div class="vu-hold" id="vuHR"></div></div><span class="vu-db mono" id="vuDR">-∞</span></div>
+            <div class="vu-scale mono"><span>-60</span><span>-36</span><span>-18</span><span>-6</span><span>0</span></div>
+          </div>
+          <span class="clip" id="clip" title="Clip">CLIP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ ACT IV · THE BOOTH (horizontal) ═════════ -->
+<section class="scene reel" data-scene="reel" id="features">
+  <div class="sticky">
+    <div class="reel-ghost bodoni" aria-hidden="true">Ready to Cue · Ready to Cue · Ready to Cue</div>
+    <div class="reel-track" id="reelTrack">
+      <div class="reel-intro">
+        <p class="eyebrow">Act IV · The booth</p>
+        <h2 class="bodoni big">Everything<br>you need.</h2>
+        <p class="lead">Nothing you don’t. Every control is where you expect it — in the dark, on opening night.</p>
+        <span class="reel-arrow mono">keep scrolling →</span>
+      </div>
+
+      <article class="card">
+        <span class="num mono">01</span>
+        <svg class="glyph" viewBox="0 0 200 120"><rect x="40" y="18" width="120" height="84" rx="14" class="g-line" stroke-dasharray="8 8"/><path d="M100 36v40M82 60l18 18 18-18" class="g-cyan"/></svg>
+        <h3>Drop anything, anywhere.</h3>
+        <p>Audio, video and images straight into the list — even between two cues. Drag to reorder, drop to place.</p>
+      </article>
+
+      <article class="card new-card">
+        <span class="num mono">02</span><em class="new">New</em>
+        <svg class="glyph" viewBox="0 0 200 120"><rect x="20" y="16" width="160" height="22" rx="6" class="g-line"/><rect x="20" y="44" width="160" height="22" rx="6" class="g-sel"/><rect x="20" y="72" width="160" height="22" rx="6" class="g-sel"/><rect x="20" y="100" width="160" height="22" rx="6" class="g-sel"/><text x="170" y="10" text-anchor="end" class="g-txt">3 SELECTED</text></svg>
+        <h3>Select like the Finder.</h3>
+        <p>Click, ⌘-click, ⇧-click, ⌘A. Change a fade, a curve or a level once — it applies to every selected cue. Copy and paste them all.</p>
+      </article>
+
+      <article class="card new-card">
+        <span class="num mono">03</span><em class="new">New</em>
+        <svg class="glyph" viewBox="0 0 200 120"><rect x="44" y="6" width="112" height="112" rx="12" class="g-pop"/><text x="58" y="30" class="g-opt">Nothing</text><text x="58" y="50" class="g-opt">Stop Prev</text><text x="58" y="70" class="g-opt">Stop All Prev</text><rect x="50" y="78" width="100" height="18" rx="5" class="g-hl"/><text x="58" y="91" class="g-opt on">Fade Prev · 2.0s</text><text x="58" y="110" class="g-opt">Fade All Prev</text></svg>
+        <h3>What happens before.</h3>
+        <p>Each cue decides what to do with the ones above it when it fires: stop, stop all, fade or fade all — with its own fade time.</p>
+      </article>
+
+      <article class="card">
+        <span class="num mono">04</span>
+        <svg class="glyph" viewBox="0 0 200 120"><path d="M20 60 C 70 60, 80 20, 100 20 S 130 60, 180 60" class="g-cyan"/><path d="M20 100 L180 20" class="g-line"/><path d="M20 100 C 60 100, 140 20, 180 20" class="g-dim"/></svg>
+        <h3>Crossfades with curves.</h3>
+        <p>Linear, S-curve, fast or slow start. Constant power is the default: same perceived loudness all the way through.</p>
+      </article>
+
+      <article class="card">
+        <span class="num mono">05</span>
+        <svg class="glyph" viewBox="0 0 200 120"><rect x="14" y="44" width="54" height="32" rx="8" class="g-cyan"/><path d="M72 60h20" class="g-line"/><rect x="96" y="44" width="40" height="32" rx="8" class="g-line"/><path d="M140 60h14" class="g-line"/><rect x="158" y="44" width="30" height="32" rx="8" class="g-line"/><text x="82" y="38" class="g-txt">pre</text><text x="140" y="38" class="g-txt">auto</text></svg>
+        <h3>Pre-wait, auto-continue, auto-follow.</h3>
+        <p>Chain cues with waits and automatic starts. Auto-follow crossfades into the next one. Complex sequences, one GO.</p>
+      </article>
+
+      <article class="card new-card">
+        <span class="num mono">06</span><em class="new">New</em>
+        <svg class="glyph" viewBox="0 0 200 120"><g class="g-film"></g><path d="M14 98 Q 30 80 46 98 T 78 98 T 110 98 T 142 98 T 186 98" class="g-cyan"/></svg>
+        <h3>Video, frame by frame.</h3>
+        <p>Video cues show a filmstrip above the audio waveform. Fades work on picture and sound; audio is normalized too.</p>
+      </article>
+
+      <article class="card">
+        <span class="num mono">07</span>
+        <svg class="glyph" viewBox="0 0 200 120"><rect x="22" y="22" width="72" height="76" rx="16" class="g-amber"/><text x="58" y="70" text-anchor="middle" class="g-key amber">F</text><rect x="106" y="22" width="72" height="76" rx="16" class="g-red"/><text x="142" y="68" text-anchor="middle" class="g-key small">ESC</text></svg>
+        <h3>Fade, and Stop All.</h3>
+        <p>F fades everything with your global fade time. Stop All can fade too — press it twice and everything stops. Instantly.</p>
+      </article>
+
+      <article class="card new-card">
+        <span class="num mono">08</span><em class="new">New</em>
+        <svg class="glyph" viewBox="0 0 200 120"><circle cx="40" cy="60" r="16" class="g-cyan"/><path d="M56 60h28" class="g-line"/><rect x="88" y="20" width="96" height="22" rx="6" class="g-line"/><rect x="88" y="49" width="96" height="22" rx="6" class="g-hlbox"/><rect x="88" y="78" width="96" height="22" rx="6" class="g-line"/><text x="96" y="35" class="g-opt">System Default</text><text x="96" y="64" class="g-opt on">Dante Virtual…</text><text x="96" y="93" class="g-opt">USB Interface</text></svg>
+        <h3>Any output.</h3>
+        <p>Pick the audio device in Settings — Dante Virtual Soundcard, your interface, or simply follow the Mac.</p>
+      </article>
+
+      <article class="card">
+        <span class="num mono">09</span>
+        <svg class="glyph" viewBox="0 0 200 120"><text x="100" y="78" text-anchor="middle" class="g-bignum">12A</text></svg>
+        <h3>Numbers, your way.</h3>
+        <p>Automatic numbering, or type your own: 12, 12A, 12B. The way your stage manager calls them.</p>
+      </article>
+
+      <article class="card">
+        <span class="num mono">10</span>
+        <svg class="glyph" viewBox="0 0 200 120"><path d="M30 34h44l10 12h86v54H30z" class="g-line"/><text x="100" y="84" text-anchor="middle" class="g-file">.lacue</text></svg>
+        <h3>One show, one folder.</h3>
+        <p>The <span class="mono">.lacue</span> file and its Media folder travel together, with relative paths. Auto-saved. Double-click and you’re on.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ ACT V · KEYBOARD ═════════ -->
+<section class="keys-section" id="keys">
+  <div class="wrap center">
+    <p class="eyebrow reveal">Act V · Eyes on stage</p>
+    <h2 class="bodoni big split">Run it without looking.</h2>
+    <p class="lead reveal" style="margin:0 auto">Every action is one key away. Try them — press them now.</p>
+    <div class="keyboard reveal d2" id="keyboard">
+      <div class="key k-space" data-key=" " data-act="GO"><span class="cap">SPACE</span><b>GO</b></div>
+      <div class="key k-p" data-key="p" data-act="PAUSE"><span class="cap">P</span><b>Pause</b></div>
+      <div class="key k-f" data-key="f" data-act="FADE"><span class="cap">F</span><b>Fade</b></div>
+      <div class="key k-s" data-key="s" data-act="STOP"><span class="cap">S</span><b>Stop</b></div>
+      <div class="key k-esc" data-key="Escape" data-act="STOP ALL"><span class="cap">ESC</span><b>Stop All</b></div>
+    </div>
+    <p class="key-say mono" id="keySay">&nbsp;</p>
+    <p class="key-note reveal">In Edit mode, Space auditions the selected cue — without touching the live show.</p>
+  </div>
+</section>
+
+<!-- ═════════ GO ═════════ -->
+<section class="scene go" data-scene="go" id="go">
+  <div class="sticky">
+    <div class="go-flash" aria-hidden="true"></div>
+    <p class="go-pre bodoni">When you’re ready…</p>
+    <div class="go-wrap" aria-hidden="true">
+      <span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span>
+      <div class="go-key">GO</div>
+    </div>
+    <h2 class="go-ready"><span class="bodoni">Ready</span> <span class="grot">to Cue.</span></h2>
+  </div>
+</section>
+
+<!-- ═════════ DOWNLOAD ═════════ -->
+<section class="download" id="download">
+  <div class="dl-glow" aria-hidden="true"></div>
+  <div class="wrap center">
+    <img src="assets/icon-512.png" alt="La Cue app icon" class="dl-icon" id="dlIcon" width="220" height="220">
+    <h2 class="wordmark xl reveal"><span class="w-la">La</span><span class="w-cue">Cue</span></h2>
+    <p class="lead reveal d2">The cue player for whoever is on the button.<br>For theatre, events and schools, on Mac.</p>
+    <div class="cta reveal d3">
+      <a class="btn-primary" href="https://github.com/marcolastella/la-cue/releases/latest">Download for Mac</a>
+      <a class="btn-ghost" href="https://github.com/marcolastella/la-cue">View on GitHub</a>
+    </div>
+    <p class="req mono reveal d3">Version 1.0 · macOS 13 Ventura or later · Apple Silicon</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <span><span class="w-la">La</span> <span class="w-cue">Cue</span> · Created by Marco Lastella</span>
+  <span>© 2026 Marco Lastella. All rights reserved.</span>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
