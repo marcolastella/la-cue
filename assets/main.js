@@ -29,7 +29,7 @@
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
   }), { threshold: 0.25 });
-  $$(".reveal, .split").forEach(el => io.observe(el));
+  $$(".reveal, .split, .signature").forEach(el => io.observe(el));
 
   /* ── polvere di scena: particelle in parallasse su tutta la pagina ── */
   const dust = $("#dust"), dctx = dust.getContext("2d");
@@ -427,6 +427,50 @@
   const pads = $(".g-pads", track);
   if (pads) for (let r = 0; r < 2; r++) for (let c = 0; c < 4; c++) { const e = document.createElementNS(NS, "rect"); Object.entries({ x: 32 + c * 22, y: 34 + r * 28, width: 16, height: 22, rx: 4 }).forEach(([k, v]) => e.setAttribute(k, v)); if (r === 0 && c === 1) e.setAttribute("style", "fill:#5FE7FF;stroke:#5FE7FF"); pads.appendChild(e); }
 
+  /* ═════════ SCENA · REMOTE ═════════ */
+  const rmSec = $(".remote"), qrRects = $$(".qr rect");
+  const qrOrder = qrRects.map((_, i) => i).sort(() => Math.random() - .5);
+  const qrRank = new Array(qrRects.length); qrOrder.forEach((r, k) => qrRank[r] = k / qrRects.length);
+  const ipadScr = $("#rmIpad .scr"), phoneScr = $("#rmPhone .scr");
+  const rmSteps = $$("#rmSteps li"), rmDevs = $$("#rmDevs span"), rmDevN = $("#rmDevices");
+  const ipadRole = $("#ipadRole"), phoneRole = $("#phoneRole"), pairTxt = $("#pairTxt"), pGo = $(".p-go");
+  const rmAt = [0, .17, .33, .5, .66, .82];
+  let lastRm = -1;
+  function updRemote(p) {
+    const q = map(p, .02, .15);
+    qrRects.forEach((r, i) => r.classList.toggle("on", qrRank[i] < q));
+    let si = 0; rmAt.forEach((v, i) => { if (p >= v) si = i; });
+    rmSteps.forEach((li, i) => li.classList.toggle("on", i === si));
+    rmSec.classList.toggle("ph-in", p >= .17);
+    rmSec.classList.toggle("scanning", p >= .18 && p < .27);
+    rmSec.classList.toggle("ip-in", p >= .5);
+    phoneScr.classList.toggle("paired", p >= .27);
+    phoneScr.classList.toggle("app", p >= .33);
+    phoneScr.classList.toggle("operator", p >= .82);
+    pairTxt.textContent = p >= .27 ? "Paired — no password" : "Connecting…";
+    ipadScr.classList.toggle("stage", p >= .66 && p < .82);
+    ipadRole.textContent = p >= .66 && p < .82 ? "STAGE" : "VIEWER";
+    ipadRole.classList.toggle("stage", p >= .66 && p < .82);
+    phoneRole.textContent = p >= .82 ? "OPERATOR" : "VIEWER";
+    phoneRole.classList.toggle("operator", p >= .82);
+    const nDev = p < .27 ? 0 : p < .33 ? 1 : Math.min(4, 1 + Math.floor(map(p, .33, .48) * 3.99));
+    rmDevs.forEach((d, i) => d.classList.toggle("on", i < nDev));
+    rmDevN.textContent = nDev + (nDev === 1 ? " device" : " devices");
+    if (si !== lastRm && si === 5) { pGo.classList.add("hit"); setTimeout(() => pGo.classList.remove("hit"), 400); }
+    lastRm = si;
+  }
+  // countdown "live" sugli schermi del remote
+  const remEls = $$(".remote [data-rem]"), progEls = $$(".remote [data-prog]"), mkEls = $$(".remote [data-mk]");
+  const fmtRem = s => `${Math.floor(s / 60)}:${(s % 60).toFixed(1).padStart(4, "0")}`;
+  function remoteTick(t) {
+    const r = rmSec.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    const rem = 65 - ((t / 1000) % 60);
+    remEls.forEach(e => { e.textContent = fmtRem(rem); e.classList.toggle("warn", rem < 15 && rem >= 5); e.classList.toggle("end", rem < 5); });
+    progEls.forEach(e => e.style.width = ((65 - rem) / 65 * 100) + "%");
+    mkEls.forEach(e => e.textContent = fmtRem(Math.max(0, rem - 34)));
+  }
+
   /* ═════════ SCENA · GO ═════════ */
   const goKey = $(".go-key"), goPre = $(".go-pre"), goReady = $(".go-ready"), flash = $(".go-flash"), rings = $$(".ring");
   function updGo(p) {
@@ -489,7 +533,7 @@
   }
 
   /* ═════════ loop ═════════ */
-  const scenes = { intro: updIntro, real: updReal, show: updShow, wave: updWave, mixer: updMixer, reel: updReel, go: updGo };
+  const scenes = { intro: updIntro, real: updReal, remote: updRemote, show: updShow, wave: updWave, mixer: updMixer, reel: updReel, go: updGo };
   const sceneEls = $$("[data-scene]");
   const nav = $(".nav"), sbFill = $(".scrollbar-fill"), sbHead = $(".scrollbar-head"), intro = $(".intro");
   function sceneP(s) {
@@ -505,7 +549,7 @@
     });
     const mr = $(".mixer").getBoundingClientRect();
     mixVisible = mr.bottom > 0 && mr.top < innerHeight;
-    meterTick(t); keysDemo(t);
+    meterTick(t); keysDemo(t); remoteTick(t);
     updSpeeds(); updDl(); updGallery(); drawSine(t); drawDust(t);
     const docP = clamp(scrollY / (document.documentElement.scrollHeight - innerHeight));
     sbFill.style.width = docP * 100 + "%";
