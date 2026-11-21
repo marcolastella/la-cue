@@ -1,8 +1,8 @@
 #!/bin/bash
 # La Cue — one-line installer
-#   curl -fsSL https://marcolastella.github.io/la-cue/install.sh | bash
+#   curl -fsSL https://lacue.app/install.sh | bash
 set -e
-URL="https://marcolastella.github.io/la-cue/downloads/La-Cue-mac.zip"
+URL="https://lacue.app/downloads/La-Cue-mac.zip"
 APP="/Applications/La Cue.app"
 
 echo ""
