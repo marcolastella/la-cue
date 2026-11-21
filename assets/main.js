@@ -532,6 +532,14 @@
     });
   }
 
+  /* ═════════ copia comando installazione ═════════ */
+  const olBtn = $("#olCopy");
+  if (olBtn) olBtn.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText($("#olCmd").textContent); olBtn.textContent = "Copied ✓"; }
+    catch (e) { const r = document.createRange(); r.selectNodeContents($("#olCmd")); getSelection().removeAllRanges(); getSelection().addRange(r); olBtn.textContent = "Press ⌘C"; }
+    setTimeout(() => olBtn.textContent = "Copy", 2000);
+  });
+
   /* ═════════ loop ═════════ */
   const scenes = { intro: updIntro, real: updReal, remote: updRemote, show: updShow, wave: updWave, mixer: updMixer, reel: updReel, go: updGo };
   const sceneEls = $$("[data-scene]");
