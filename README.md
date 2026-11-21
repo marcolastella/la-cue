@@ -5,7 +5,7 @@
 Website for **La Cue**, the cue player for whoever is on the button — theatre, events and schools, on Mac.
 
 **Live:** https://marcolastella.github.io/la-cue/  
-**Download:** [La-Cue-1.0-mac.zip](downloads/La-Cue-1.0-mac.zip) — free · macOS 13+ · Apple Silicon
+**Download:** [La-Cue-mac.zip](downloads/La-Cue-mac.zip) — free · macOS 13+ · Apple Silicon
 
 Plain HTML, CSS and JavaScript, no libraries. Scroll-driven scenes and parallax:
 opening night, the waveform, the mixer, the booth, the keyboard, and GO.
