@@ -569,7 +569,16 @@
         body: JSON.stringify(data)
       });
       const j = await r.json().catch(() => ({}));
-      if (!r.ok || j.success === "false" || j.success === false) throw new Error(j.message || "error");
+      if (!r.ok || j.success === "false" || j.success === false) {
+        const msg = String(j.message || "");
+        if (/activat/i.test(msg)) {   // first use: FormSubmit waits for the owner to activate the form
+          st.className = "ct-status err";
+          st.textContent = "The form is being set up — please try again later, or write to info@lacue.app.";
+          console.info("FormSubmit:", msg);
+          btn.disabled = false; return;
+        }
+        throw new Error(msg || "error");
+      }
       ctForm.reset();
       st.className = "ct-status ok"; st.textContent = "Thank you — your message is on its way. I’ll get back to you soon.";
     } catch (err) {
