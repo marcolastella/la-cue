@@ -532,6 +532,53 @@
     });
   }
 
+  /* ═════════ WORKSTATIONS: modi che si alternano ═════════ */
+  const wsRemote = $("#wsRemote"), wsMode = $("#wsMode"), wsModes = $$(".ws-mode"), wsRem = $$("[data-wsrem]");
+  const WS = ["full", "view", "list", "stage"];
+  let wsI = 0, wsVisible = false, wsPinned = 0;
+  if (wsRemote) {
+    new IntersectionObserver(es => es.forEach(e => wsVisible = e.isIntersecting), { threshold: .2 }).observe(wsRemote);
+    const setWs = m => {
+      wsRemote.dataset.mode = m; wsMode.textContent = m.toUpperCase();
+      wsModes.forEach(c => c.classList.toggle("on", c.dataset.m === m));
+    };
+    wsModes.forEach(c => c.addEventListener("click", () => { wsPinned = performance.now(); setWs(c.dataset.m); wsI = WS.indexOf(c.dataset.m); }));
+    setWs("full");
+    setInterval(() => {
+      if (!wsVisible || performance.now() - wsPinned < 6000) return;
+      wsI = (wsI + 1) % WS.length; setWs(WS[wsI]);
+    }, 2600);
+    setInterval(() => {
+      if (!wsVisible) return;
+      const r = 161.6 - ((performance.now() / 1000) % 150);
+      wsRem.forEach(e => e.textContent = `${Math.floor(r / 60)}:${(r % 60).toFixed(1).padStart(4, "0")}`);
+    }, 100);
+  }
+
+  /* ═════════ CONTATTI: invio del modulo ═════════ */
+  const ctForm = $("#ctForm");
+  if (ctForm) ctForm.addEventListener("submit", async e => {
+    e.preventDefault();
+    const st = $("#ctStatus"), btn = $("#ctSend");
+    if (ctForm._honey.value) return;
+    btn.disabled = true; st.className = "ct-status"; st.textContent = "Sending…";
+    const data = Object.fromEntries(new FormData(ctForm).entries());
+    try {
+      const r = await fetch("https://formsubmit.co/ajax/info@lacue.app", {
+        method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(data)
+      });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || j.success === "false" || j.success === false) throw new Error(j.message || "error");
+      ctForm.reset();
+      st.className = "ct-status ok"; st.textContent = "Thank you — your message is on its way. I’ll get back to you soon.";
+    } catch (err) {
+      st.className = "ct-status err";
+      st.innerHTML = 'Something went wrong. Please write to <a href="mailto:info@lacue.app">info@lacue.app</a>.';
+    }
+    btn.disabled = false;
+  });
+
   /* ═════════ copia comando installazione ═════════ */
   const olBtn = $("#olCopy");
   if (olBtn) olBtn.addEventListener("click", async () => {
